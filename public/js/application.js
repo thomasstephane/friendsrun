@@ -64,9 +64,13 @@ $(document).ready(function() {
   var countdown = setInterval(function(){ 
     counter --; 
     if (counter > 0) {
+      $('.hint').show("slow");
+      $('.hint').css('opacity',"1");
       $('.countdown p').text('Start in ' + counter);
     } else {
+      $('.hint').hide("slow");
       $('.countdown p').text('Go!');
+      $('.hint').css('opacity',0);
     }
   }, 
   1000);
