@@ -1,20 +1,197 @@
+* {
+font-family: Helvetica, Arial, sans-serif;
+color: #a60c00;
+font-size:16px;
+text-decoration:none;
+text-align:center;
+font-style:normal;
+font-weight:400;
+line-height:125%;
+margin:0;
+padding:0;
+outline:0;
+border: 0;
+background: none;
+border:none;
+}
+
+
+
+html {
+  background: url('../images/grass.jpg');
+}
+
+body h1 {
+  font-family: 'Faster One', Helvetica, Arial, sans-serif;
+  font-size: 56px;
+  font-weight:300;
+  margin: 24px; 
+  text-shadow: 0 0px 20px white;
+}
+
+.racer_table {
+  display: inline-block;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-shadow: 0 0 30px #aac48e;
+  padding: 0;
+}
+
 .racer_table td {
-  background-color: white;
-  height: 20px;
-  width: 20px;
+  background-color: #a60c00;
+  border-top: 5px;
+  height: 70px;
+  width: 40px;
+  -webkit-border-image:url('../images/track_border.jpg')  54 7 round; /* Safari 5 */
+  -o-border-image:url('../images/track_border.jpg')  54 7 round; /* Opera */
+  border-image:url('../images/track_border.jpg')  54 7 round;
+  display: inline-block;
+  background: url('../images/track.jpg');
+
+}
+
+.racer_table td img {
+  opacity: 0;
+  margin-top: -6px;
+}
+.racer_table td img.gravatar {
+  opacity: 0;
+  border-radius: 17px;
+  border: 1px solid white;
+  margin-top: 3px;
+  box-shadow: 1px 1px 5px #000;
+  transform:rotate(20deg);
+  -ms-transform:rotate(20deg);
+  -webkit-transform:rotate(20deg); 
+
 }
 
 .racer_table td.active {
-  background-color: black;
+  /*background-image: none; */
 }
 
-html {
-  background-color: #ccc;
+.racer_table td.active img {
+  opacity: 1;
 }
 
-.restart {
-  height: 20px;
-  width: 120px;
-  background-color: blue;
+.racer_table td.finish,
+.racer_table td.beginning {
+  -webkit-border-image:url('../images/track_border-v.png')  7 7 round; /* Safari 5 */
+  -o-border-image:url('../images/track_border-v.png')  7 7 round; /* Opera */
+  border-image:url('../images/track_border-v.png')  7 7 round;
+  
+}
+.racer_table td.beginning p {
+  font-family: 'Stardos Stencil';
+  line-height: 72px;
+  color: white ;
+  font-size: 30px;  
+}
+
+
+.racer_table td.finish img {
+  opacity: 1;
+  border-radius: 0;
+  margin-top: 0;
+}
+
+.racer_table td.finish img.gravatar {
+  position: absolute;
+  opacity: 0;
+  border-radius: 17px;
+  margin-top: 0;
+
+  transform:rotate(0deg);
+  -ms-transform:rotate(0deg);
+  -webkit-transform:rotate(0deg); 
+}
+
+.racer_table td img.body-finish {
+  position: absolute;
+  opacity: 0;
+  margin-top: 37px;
+}
+
+.racer_table td.finish.active img.gravatar {
+  opacity: 1;
+}
+
+.racer_table td.finish.active img.body-finish {
+  opacity: 1;
+}
+
+
+
+#scoreboard {
+  left:50%;
+  margin-left: -100px;
+  margin-top: 40px;
+  height: 124px;
+  width: 220px;
+  font-family: 'Codystar';
+  color: red;
+  font-size: 24px;
+  position: absolute;
+  border: 3px solid #ccc;
+  box-shadow: -1px 1px 30px #000;
+  border-radius: 8px;
+  background: url('http://fc07.deviantart.net/fs71/f/2010/250/8/5/brushed_black_aluminum_by_inivux-d2y85jt.png');
+
+}
+
+
+#scoreboard .restart p {
+  font-size: 18px;
+  position: absolute;
+  bottom: 2px;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+#scoreboard p{
+  font-family: 'Codystar';
+  color: red;
+  font-size: 24px;
+}
+
+#scoreboard .countdown {
+  border-bottom: 1px solid #ccc;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+#scoreboard .timer {
+  display: inline;
+  line-height: 40px;
+}
+
+#scoreboard .timer p{
+  position: absolute;
+  display: inline;
+  text-align: right;
+  line-height: 40px;
+  right: 25px;
+}
+
+#scoreboard span{
+  position: absolute;
+  font-family: Helvetica;
+  line-height: 40px;
   color: white;
+  font-size: 24px;
+  display: inline;
+  left: 25px;
+}
+
+.finished {
+  display: none;
+  height: 128px;
+  width: 200px;
+  margin-top: 150px;
+  background: url('../images/cup.png');
+  position: absolute;
+  left : 50%;
+  margin-left: -90px;
 }

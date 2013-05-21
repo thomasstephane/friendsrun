@@ -24,10 +24,13 @@ end
 
 get '/game' do 
   @game = Game.create(track_length: session[:length].to_i)
+  @runners = []
   @players = session[:nb_players]
   @players.times do |i|
     player = "user_id#{i+1}".to_sym
     GamesUser.create(user_id: session[player], game_id: @game.id)
+    user = User.find(session[player])
+    @runners << user
   end
   erb :play
 end

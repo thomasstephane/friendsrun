@@ -1,14 +1,20 @@
-<div class="countdown"></div>
+
 <div class='game_id' name="<%= @game.id%>"></div>
 <table class="racer_table">
-    <% @players.times do |i| %>
+    <% @runners.each_with_index do |runner, i| %>
     <tr id="player<%= i+ 1%>_strip">
-        <td class="active"></td>
-        <% (@game.track_length - 1).times do |i| %>
-            <td></td>
+      <td class='beginning'><p><%= i +1 %></p></td>
+        <td class="active"><img class="gravatar" src="<%= gravatar(runner.email, 35) %>"><img src="/images/body.png"></td>
+        <% (@game.track_length + 1).times do |i| %>
+            <td><img  class="gravatar" src="<%= gravatar(runner.email, 35) %>"><img src="/images/body.png"></td>
         <% end %>
+        <td class='finish'><img class="gravatar" src="<%= gravatar(runner.email, 35) %>"><img class="gravatar" src="/images/finish-gold.png"><img class="body-finish" src="/images/finish-body.png"><img src="/images/finish.png"></td>
     </tr>
     <% end %>
 </table>
-<div class="finished"></div>
-<div class="restart">Restart</div>
+<div id="scoreboard">
+  <div class="countdown"><p>Ready?</p></div>
+  <div class="timer"><span>TIME: </span><p>0:000</p></div>
+  <div class="restart"><p>Restart</p></div>
+</div>
+  <div class="finished"></div>

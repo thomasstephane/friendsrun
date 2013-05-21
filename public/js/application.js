@@ -18,12 +18,16 @@ $(document).ready(function() {
 
   $(document).on('keyup', function(event) {
     var n = event.keyCode - 48;
-
-    if (($('.finished').text() === "") && ($('.countdown').text() === 'Go!') ) {
+    var now_sec = Math.ceil((new Date().getTime()-timer_start-7000)/1000);
+    var now_milli = (new Date().getTime()-timer_start)%1000;
+    
+    if (($('.finished').text() === "") && ($('.countdown p').text() === 'Go!') ) {
       update_player_position("player" + n);
       counters[n - 1]--;
-      if (counters[n - 1] === 1 ) {
-        $('.finished').text("Player " + n + " wins!!");
+      $('.timer p').text(now_sec + ":" + now_milli);
+      if (counters[n - 1] === 2 ) {
+        $('.finished').text(" ");
+        $('.finished').toggle();
         var timer_finish = new Date().getTime();
         $.ajax ({
           type: 'post',
@@ -44,20 +48,25 @@ $(document).ready(function() {
       counters[i] = $('#player1_strip').find('td').length;
     }
     $('.finished').text("");
-    $('tr td').removeClass();
-    $('tr td:first-child').addClass('active');
-    counter = 1;
+    $('.finished').toggle();
+    $('.timer p').text("0:000");
+    $('tr td.active').removeClass();
+    $('tr td:first-child').next().addClass('active');
+    $('tr td:last-child').addClass('finish');
+    counter = 6;
+    timer_start  = new Date().getTime() - 1000;
     countdown;
   });
 
 
-  var counter = 1
+  var counter = 6
+  var timer_start  = new Date().getTime();
   var countdown = setInterval(function(){ 
     counter --; 
     if (counter > 0) {
-      $('.countdown').text('Start in ' + counter);
+      $('.countdown p').text('Start in ' + counter);
     } else {
-      $('.countdown').text('Go!');
+      $('.countdown p').text('Go!');
     }
   }, 
   1000);
