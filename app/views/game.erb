@@ -1,0 +1,10 @@
+
+    <form action='/game' method='post'>
+      <% @players.times do |i| %>
+        <input type="text"  name="name<%= i + 1 %>" placeholder="name player <%= i + 1 %>">
+        <input type="text" name="email<%= i + 1 %>" placeholder="email player <%= i + 1 %>">
+     <% end %>
+      <input type="hidden" name="players" value="<%= @players %>">
+      <input type="number" name='length' placeholder='Track length'>
+      <input type="submit" value="Let's start!">
+    </form>

@@ -1,0 +1,14 @@
+<div class="countdown"></div>
+<div class='game_id' name="<%= @game.id%>"></div>
+<table class="racer_table">
+    <% @players.times do |i| %>
+    <tr id="player<%= i+ 1%>_strip">
+        <td class="active"></td>
+        <% (@game.track_length - 1).times do |i| %>
+            <td></td>
+        <% end %>
+    </tr>
+    <% end %>
+</table>
+<div class="finished"></div>
+<div class="restart">Restart</div>
