@@ -21,11 +21,12 @@ Game.prototype.addPlayers = function() {
     player = new Player(i);
     this.players.push(player);
   }
+    this.restart();
 };
 
 Game.prototype.play = function() {
   var n = event.keyCode - 49;
-  var now_sec = Math.ceil((new Date().getTime()-timer_start-7000)/1000);
+  var now_sec = Math.ceil((new Date().getTime()-timer_start - 1000)/1000);
   var now_milli = (new Date().getTime()-timer_start)%1000;
 
   if (($('.finished').text() === "") && ($('.countdown p').text() === 'Go!') ) {
@@ -45,26 +46,6 @@ Game.prototype.play = function() {
   }
 };
 
-Game.prototype.countdown = function() {
-  var timer = 6;
-  timer_start = new Date().getTime();
-  setInterval(function(){
-    timer --;
-    if (timer > 0) {
-      $('.hint').show("slow");
-      $('.hint').css('opacity',"1");
-      $('.countdown p').text('Start in ' + timer);
-    } else {
-      $('.hint').hide("slow");
-      $('.countdown p').text('Go!');
-      $('.hint').css('opacity',0);
-      clearInterval();
-    }
-  },
-  1000);
-};
-
-
 Game.prototype.restart = function() {
   $.ajax ({
     type: 'get',
@@ -79,16 +60,39 @@ Game.prototype.restart = function() {
   $('tr td.active').removeClass();
   $('tr td:first-child').next().addClass('active');
   $('tr td:last-child').addClass('finish');
-  counter = 6;
-  timer_start  = new Date().getTime() - 1000;
-  this.countdown();
+  $timer = 6;
+  console.log($timer);
+  countdown;
+
+
+
+  var $timer = 6;
+  var countdown = setInterval(function(){
+    $timer --;
+    console.log($timer);
+    if ($timer > 0) {
+      $('.hint').show("slow");
+      $('.hint').css('opacity',"1");
+      $('.countdown p').text('Start in ' + $timer);
+      console.log('true > 0');
+    } else {
+      $('.hint').hide("slow");
+      $('.countdown p').text('Go!');
+      $('.hint').css('opacity',0);
+      console.log('stop!');
+      clearInterval(countdown);
+      timer_start = new Date().getTime();
+    }
+  },
+  1000);
 };
+
+
 
 $(document).ready(function() {
   var friendsrun = new Game();
   friendsrun.addPlayers();
   var timer_start  = new Date().getTime();
-  friendsrun.countdown();
 
   $(document).on('keyup', function(event) {
     friendsrun.play();
