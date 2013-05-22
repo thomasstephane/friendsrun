@@ -230,7 +230,7 @@ body h1 a {
 }
 
 .finished {
-  display: none;
+  display: visible;
   height: 128px;
   width: 200px;
   margin-top: 160px;
